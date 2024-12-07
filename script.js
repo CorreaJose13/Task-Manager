@@ -32,7 +32,7 @@ function saveTask() {
 
 function updateTask(listItem, updateButton, input) {
     switch (updateButton.textContent) {
-        case 'Edit Task':
+        case 'Edit task':
             updateButton.textContent = 'Save changes'
             input.disabled = false;
             input.focus();
