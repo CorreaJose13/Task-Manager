@@ -32,12 +32,12 @@ function saveTask() {
 
 function updateTask(listItem, updateButton, input) {
     switch (updateButton.textContent) {
-        case 'Update':
+        case 'Edit Task':
             updateButton.textContent = 'Save changes'
             input.disabled = false;
             input.focus();
             break;
-        case 'Save':
+        case 'Save changes':
             let textValue = input.value.trim();
             let taskKey = listItem.getAttribute('data-key');
             if (textValue) {
