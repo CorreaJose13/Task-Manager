@@ -30,6 +30,24 @@ function saveTask() {
     }
 }
 
+function updateTask(listItem, updateButton, input) {
+    switch (updateButton.textContent) {
+        case 'Update':
+            updateButton.textContent = 'Save changes'
+            input.disabled = false;
+            input.focus();
+            break;
+        case 'Save':
+            let textValue = input.value.trim();
+            let taskKey = listItem.getAttribute('data-key');
+            if (textValue) {
+                localStorage.setItem(taskKey, textValue);
+            }
+            input.disabled = true;
+            updateButton.textContent = 'Edit task';
+            break;
+    }
+}
 
 function listTasks() {
     taskList.innerHTML = '';
@@ -65,7 +83,6 @@ function listTasks() {
         }
     }
 }
-
 
 saveTaskButton.addEventListener('click', saveTask);
 getTaskButton.addEventListener('click', listTasks);
