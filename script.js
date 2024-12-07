@@ -49,6 +49,12 @@ function updateTask(listItem, updateButton, input) {
     }
 }
 
+function deleteTask(taskList, listItem) {
+    const taskKey = listItem.getAttribute('data-key');
+    taskList.removeChild(listItem);
+    localStorage.removeItem(taskKey);
+}
+
 function listTasks() {
     taskList.innerHTML = '';
     for (let i = 0; i < localStorage.length; i++) {
