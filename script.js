@@ -30,4 +30,42 @@ function saveTask() {
     }
 }
 
+
+function listTasks() {
+    taskList.innerHTML = '';
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        let taskValue = localStorage.getItem(key);
+        if (taskValue) {
+            const listItem = document.createElement('li');
+            listItem.setAttribute('data-key', key);
+
+            const input = document.createElement('input');
+            input.value = taskValue;
+            input.disabled = true;
+
+            const updateButton = document.createElement('button');
+            updateButton.textContent = 'Edit task';
+            updateButton.className = 'update';
+            updateButton.addEventListener('click', () =>
+                updateTask(listItem, updateButton, input)
+            );
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete';
+            deleteButton.addEventListener('click', () =>
+                deleteTask(taskList, listItem)
+            );
+
+            listItem.appendChild(input);
+            listItem.appendChild(updateButton);
+            listItem.appendChild(deleteButton);
+            taskList.appendChild(listItem);
+        }
+    }
+}
+
+
 saveTaskButton.addEventListener('click', saveTask);
+getTaskButton.addEventListener('click', listTasks);
